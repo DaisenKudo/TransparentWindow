@@ -1,17 +1,19 @@
-package me.qlain;
+package me.qlain.infrastructure.repositoryimpl;
 
 import javafx.concurrent.Task;
+import me.qlain.interfaces.repository.RuntimeRepository;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class RefreshTask extends Task<String> {
+public class RuntimeRepositoryImpl extends Task<String> implements RuntimeRepository {
     @Override
     protected String call(){
         while (true) {
             try {
-                Thread.sleep(Settings.interval);
+                Thread.sleep(Settings.INSTANCE.getInterval());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -19,12 +21,14 @@ public class RefreshTask extends Task<String> {
         }
     }
 
-    private String execCommand() {
+    @Nullable
+    @Override
+    public String execCommand() {
         StringBuilder out = new StringBuilder();
         Process p;
 
         try {
-            p = Runtime.getRuntime().exec(Settings.command);
+            p = Runtime.getRuntime().exec(Settings.INSTANCE.getCommand());
             p.waitFor();
         } catch (Exception e) {
             e.printStackTrace();

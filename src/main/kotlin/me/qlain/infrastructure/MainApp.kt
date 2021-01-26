@@ -1,13 +1,15 @@
-package me.qlain
+package me.qlain.infrastructure
 
 import javafx.application.Application
 import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
 import javafx.scene.Scene
-import javafx.scene.paint.Paint
 import javafx.stage.Stage
 import javafx.stage.StageStyle
 
+/**
+ * ウィンドウ内のコンポーネントに変更を加えて表示させます。
+ */
 class MainApp : Application() {
     private var xOffset = 0.0
     private var yOffset = 0.0
@@ -15,12 +17,13 @@ class MainApp : Application() {
     override fun start(primaryStage: Stage) {
         val root: Parent = FXMLLoader.load(javaClass.getResource("scene.fxml"))
 
-        val scene = Scene(root)
         primaryStage.apply {
-            this.scene = scene
+            this.scene = Scene(root).apply {
+                stylesheets.add(MainApp::class.java.getResource("styles.css").toExternalForm())
+                fill = null
+            }
+
             initStyle(StageStyle.TRANSPARENT)
-            scene.stylesheets.add(MainApp::class.java.getResource("styles.css").toExternalForm())
-            scene.fill = null
             show()
         }
 

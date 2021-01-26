@@ -15,8 +15,10 @@ repositories {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
 
-    //このruntimeOnly群はクロスプラットフォーム対応のjarを作るためのものです。
-    //不必要なものは消すとjarファイルのサイズを小さくできます。
+    //Jsonのパーサー
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.12.1"
+
+    //クロスプラットフォーム対応
     runtimeOnly "org.openjfx:javafx-base:$javafx.version:win"
     runtimeOnly "org.openjfx:javafx-base:$javafx.version:linux"
     runtimeOnly "org.openjfx:javafx-base:$javafx.version:mac"
@@ -39,11 +41,11 @@ javafx {
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
-mainClassName = 'me.qlain.Launcher'
+mainClassName = 'me.qlain.infrastructure.Launcher'
 
 jar {
     manifest {
-        attributes 'Main-Class': 'maru.test.Launcher'
+        attributes 'Main-Class': 'me.qlain.infrastructure.Launcher'
     }
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }

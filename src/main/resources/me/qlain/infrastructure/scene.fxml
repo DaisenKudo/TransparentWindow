@@ -8,12 +8,12 @@
             styleClass="root"
             xmlns:fx="http://javafx.com/fxml/1"
             xmlns="http://javafx.com/javafx/8.0.111"
-            fx:controller="me.qlain.FXMLController">
+            fx:controller="me.qlain.interfaces.controller.FXMLController">
     <children>
         <Text fx:id="text"
               layoutX="12"
               layoutY="128"
-              fill="#00FFFF"
+              fill="#EEEEEE"
               textAlignment="center"
               wrappingWidth="860"/>
     </children>

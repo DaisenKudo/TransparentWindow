@@ -1,8 +1,10 @@
-package me.qlain
+package me.qlain.infrastructure
 
 import javafx.application.Application
-import javafx.scene.text.Font
 
+/**
+ * 起源
+ */
 class Launcher {
     companion object {
         @JvmStatic
