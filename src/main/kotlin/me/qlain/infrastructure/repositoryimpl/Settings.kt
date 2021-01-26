@@ -4,21 +4,17 @@ import java.io.File
 import kotlin.collections.HashMap
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import me.qlain.interfaces.repository.SettingRepository
+import me.qlain.interfaces.repository.SettingsDefinition
+import me.qlain.interfaces.repository.SettingsRepository
 import kotlin.IllegalStateException
 
-interface SettingsDef {
-    val command: String
-    val interval: Int
-}
-
-object Settings : SettingsDef {
+object Settings : SettingsDefinition {
     //実行するコマンド
     override val command: String
     //コマンドの実行間隔
     override val interval: Int
 
-    private val settings: SettingRepository
+    private val settings: SettingsRepository
 
     init {
         settings = LoadSettings().load()
@@ -26,8 +22,7 @@ object Settings : SettingsDef {
         interval = settings.interval
     }
 
-
-    private class LoadSettings : SettingRepository {
+    private class LoadSettings : SettingsRepository {
         override val command: String
             get() = getSettings("command") as String
         override val interval: Int
