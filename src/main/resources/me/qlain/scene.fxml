@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+<AnchorPane id="AnchorPane"
+            prefHeight="128"
+            prefWidth="86"
+            styleClass="root"
+            xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/8.0.111"
+            fx:controller="me.qlain.FXMLController">
+    <children>
+        <Text fx:id="text"
+              layoutX="12"
+              layoutY="128"
+              fill="#00FFFF"
+              textAlignment="center"
+              wrappingWidth="860"/>
+    </children>
+</AnchorPane>

@@ -1,0 +1,4 @@
+{
+  "command" : "date +%s",
+  "interval" : 1000
+}
