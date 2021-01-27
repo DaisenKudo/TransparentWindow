@@ -4,6 +4,7 @@ import java.io.File
 import kotlin.collections.HashMap
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import me.qlain.infrastructure.Launcher
 import me.qlain.interfaces.repository.SettingsDefinition
 import me.qlain.interfaces.repository.SettingsRepository
 import kotlin.IllegalStateException
@@ -17,7 +18,7 @@ object Settings : SettingsDefinition {
     private val settings: SettingsRepository
 
     init {
-        settings = LoadSettings().load()
+        settings = LoadSettings().load(Launcher.settingFilePath)
         command = settings.command
         interval = settings.interval
     }
@@ -30,9 +31,9 @@ object Settings : SettingsDefinition {
 
         private var settings: HashMap<String, Any> = HashMap()
 
-        override fun load(): LoadSettings {
+        override fun load(path: String): LoadSettings {
             settings = jacksonObjectMapper().readValue(
-                File("src/main/resources/me/qlain/infrastructure/repositoryimpl/settings.json").readText(),
+                File(path).readText(),
                 HashMap<String, Any>().javaClass
             ) ?: throw IllegalStateException("不正なJSON")
 

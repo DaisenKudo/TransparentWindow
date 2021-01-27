@@ -1,5 +1,5 @@
 package me.qlain.interfaces.repository;
 
 interface SettingsRepository : SettingsDefinition {
-    fun load(): SettingsRepository
+    fun load(path: String): SettingsRepository
 }
