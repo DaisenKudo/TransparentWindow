@@ -13,6 +13,7 @@ import javafx.stage.StageStyle
 class MainApp : Application() {
     private var xOffset = 0.0
     private var yOffset = 0.0
+    private var isWindowMovable = true
 
     override fun start(primaryStage: Stage) {
         val root: Parent = FXMLLoader.load(javaClass.getResource("scene.fxml"))
@@ -29,12 +30,21 @@ class MainApp : Application() {
 
         root.apply {
             setOnMousePressed { event ->
-                xOffset = event.sceneX
-                yOffset = event.sceneY
+                when (event.button.name) {
+                    "PRIMARY" -> {
+                        xOffset = event.sceneX
+                        yOffset = event.sceneY
+                    }
+                    "SECONDARY" -> {
+                        isWindowMovable = !isWindowMovable
+                    }
+                }
             }
             setOnMouseDragged { event ->
-                primaryStage.x = event.screenX - xOffset
-                primaryStage.y = event.screenY - yOffset
+                if (isWindowMovable) {
+                    primaryStage.x = event.screenX - xOffset
+                    primaryStage.y = event.screenY - yOffset
+                }
             }
         }
     }
